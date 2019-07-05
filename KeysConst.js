@@ -1,3 +1,3 @@
-const KeysConst = {
+const KeyConst={
     TODO_LIST: 'TODO_LIST'
 }

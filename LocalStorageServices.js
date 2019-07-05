@@ -1,9 +1,10 @@
-const LocalStorageServices = {
-    GET: function (key) {
+const LocalStorageServices={
+    GET: function(key){
         return localStorage[key]
     },
-
-    SET: function (key, value) {
-        localStorage[key] = value;
+    SET: function(key,value){
+        localStorage[key]=value 
     }
+
+
 }
