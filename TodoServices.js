@@ -5,7 +5,7 @@ function TodoServices() {
         this.notify();
     };
     this.remove = function (id) {
-        this.tasks.filter(function(task){
+        this.tasks = this.tasks.filter(function(task){
             return task.id !== id
         })
         this.notify();
@@ -14,8 +14,8 @@ function TodoServices() {
         const targetTask = this.tasks.find(function(task){
             return task.id === id
         })
-        targetTask.text = text
-        targetTask.isDone = isDone
+        targetTask.text = (text) ? text : targetTask.text //if we are getting text from parameter then update else leave as it is
+        targetTask.isDone = (isDone !== undefined ) ? isDone : targetTask.isDone
         this.notify();
     };
     this.getAll = function () {
@@ -23,7 +23,7 @@ function TodoServices() {
     };
 
 
-    this.subscribers = [];
+    this.subscribers = []; //array of functions
     this.addEventListener = function (callback) {
         this.subscribers.push(callback)
     };
