@@ -31,6 +31,7 @@ const addTaskButtonClick = function (event) {
     const newTask = new TaskModel(text, false);
 
     todoService.add(newTask)
+    newTaskInput.value = ''
 
     //TodoUiService.renderTasks(todoListUl, [newTask])
 }
