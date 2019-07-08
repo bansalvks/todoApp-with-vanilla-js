@@ -3,3 +3,5 @@ function TaskModel(text, isDone){
     this.text = text
     this.isDone = isDone
 }
+
+
