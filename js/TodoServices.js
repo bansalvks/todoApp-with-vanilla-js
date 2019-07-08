@@ -25,8 +25,8 @@ function TodoServices(){
         const targetTask = this.tasks.find(function(task) {
             return task.id === id
         })
-        targetTask.text = text;
-        targetTask.isDone = isDone;
+        targetTask.text = (text) ? text : targetTask.text;
+        targetTask.isDone = (isDone) ? isDone : targetTask.isDone;
 
         this.saveLocally();
         this.notify();
