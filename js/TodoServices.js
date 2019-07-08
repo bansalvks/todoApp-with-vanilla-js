@@ -1,15 +1,21 @@
 function TodoServices() {
-    this.tasks = [];
+    this.tasks = CommonUtility.parseJson(LocalStorageServices.GET(KeysConst.TODO_LIST)) || [];
+
+    this.saveLocally = function() {
+        LocalStorageServices.SET(KeysConst.TODO_LIST, CommonUtility.JsonToString(this.tasks))
+    }
     
     this.add = function(task) {
         this.tasks.push(task)
+        this.saveLocally();
         this.notify();
     }; 
-    
+
     this.remove = function(id) {
         this.tasks = this.tasks.filter(function(task) {
             return task.id !== id
         })
+        this.saveLocally();
         this.notify();
     };
     
@@ -19,6 +25,7 @@ function TodoServices() {
         })
         targetTask.text = (!text) ? targetTask.text : text;
         targetTask.isDone = (isDone !== undefined) ? isDone: targetTask.isDone;
+        this.saveLocally();
         this.notify();
     };
     

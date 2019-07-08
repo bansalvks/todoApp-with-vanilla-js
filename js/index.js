@@ -49,8 +49,22 @@ function DOMContentLoadedCallback(event) {
     todoListUl = document.getElementById("todoListUl");
 
     addTaskButtonElement.addEventListener('click', addTaskButtonClicked);
+    onTodoListDataChange();
 
     document.removeEventListener('DOMContentLoaded', DOMContentLoadedCallback);
 }
 
 document.addEventListener('DOMContentLoaded', DOMContentLoadedCallback);
+
+
+/**
+ * Capturing: Event Fired from parent to child
+ * Bubling: Event fired from child to parent
+ * 
+ * Stop propagation: stops the firing of events among children and parents
+ * Stop propagation immediate: stops the firing of events even among siblings
+ * 
+ * Preventive Call: Prevent the redirection of link
+ * 
+ * Webpec, gulp: Task runners -- e.g. merge multiple files into one.
+ */
