@@ -27,12 +27,13 @@ const onTodoListDataChange = function () {
 todoService.addEventListener(onTodoListDataChange)
 
 const addTaskButtonClick = function (event) {
-    console.log('button clicked')
     const text = newTaskInput.value;
 
     const newTask = new TaskModel(text, false);
 
     todoService.add(newTask)
+
+    newTaskInput.value = null;
 }
 
 
@@ -42,6 +43,8 @@ function DOMContentLoadedCallback() {
     todoListUl = document.getElementById('todoListUl');
 
     addTaskButton.addEventListener('click', addTaskButtonClick)
+    
+    onTodoListDataChange();
 }
 
 
