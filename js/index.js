@@ -29,22 +29,24 @@ const addTaskButtonClick = function (event) {
     const text = newTaskInput.value;
 
     const newTask = new TaskModel(text, false);
-
     todoService.add(newTask)
+
+    newTaskInput.value = '';
 
     // TodoUiService.renderTasks(todoListUl, [newTask])
 }
 
+const DOMContentLoadedCallback = function(event){ 
+    console.log("Document ready");
 
-function DOMContentLoadedCallback() {
-    addTaskButton = document.getElementById("addTaskButton");
+    const addTaskButton = document.getElementById('addTaskButton');
     newTaskInput = document.getElementById('newTaskInput');
     todoListUl = document.getElementById('todoListUl');
 
-    addTaskButton.addEventListener('click', addTaskButtonClick)
+    addTaskButton.addEventListener('click',addTaskButtonClick);
+    document.removeEventListener('DOMContentLoaded',DOMContentLoadedCallback)
+    
+    onTodoListDataChange();
 }
 
-
-
-
-document.addEventListener('DOMContentLoaded', DOMContentLoadedCallback)
+document.addEventListener('DOMContentLoaded', DOMContentLoadedCallback);
