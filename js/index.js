@@ -63,6 +63,7 @@ function DOMContentCallback(){
     
     addTaskButton.addEventListener('click', addTaskButtonClick);
     // document.removeEventListener('DOMContentLoaded', DOMContentCallback)
+    onTodoListDataChange();
 }
 
 document.addEventListener('DOMContentLoaded', DOMContentCallback)
