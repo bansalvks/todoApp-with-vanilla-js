@@ -5,10 +5,21 @@ function TodoServices() {
         this.notify();
     };
     this.remove = function (id) {
+        this.tasks = this.tasks.filter(function(task){
+            return task.id !== id
+
+        })
 
         this.notify();
     };
     this.update = function (id, text, isDone) {
+        const targetTask = this.tasks.find(function(task){
+            return task.id === id
+
+        })
+
+        targetTask.text = (text) ? text: targetTask.text
+        targetTask.isDone = (isDone !== undefined)? isDone: targetTask.isDone
 
         this.notify();
     };

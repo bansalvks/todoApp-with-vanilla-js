@@ -4,7 +4,25 @@ let todoListUl = null;
 
 const todoService = new TodoServices();
 
+const updateTaskHandeler = function(id,text){
+    //console.log(event);
+    todoService.update(id,text);
+
+}
+
+const deleteTaskHandeler = function(id){
+    todoService.remove(id);
+}
+
+const doneTaskHandeler = function(id, isDone){
+    todoService.update(id, undefined, isDone);
+}
+
 const onTodoListDataChange = function () {
+    //console.log(todoService.getAll())
+    const taskList = todoService.getAll();
+    //console.log(taskList);
+    TodoUiService.renderTasks(todoListUl, taskList, updateTaskHandeler, deleteTaskHandeler, doneTaskHandeler)
 
 }
 
