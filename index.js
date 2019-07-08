@@ -4,8 +4,22 @@ let todoListUl = null;
 
 const todoService = new TodoServices();
 
-const onTodoListDataChange = function () {
+const updateTaskHandler = function(id,text){
+    console.log(event)
+    todoService.update(id,text)
+}
 
+const doneTaskHandler = function(id){
+   todoService.remove(id)
+}
+
+const deleteTaskHandler = function(id,isDone){
+    todoService.update(id,undefined,isDone)
+}
+
+const onTodoListDataChange = function () {
+    const taskList = todoService.getAll()
+    TodoUiService.renderTasks(todoListUl,taskList,updateTaskHandler,doneTaskHandler,deleteTaskHandler)
 }
 
 todoService.addEventListener(onTodoListDataChange)
@@ -18,7 +32,7 @@ const addTaskButtonClick = function (event) {
 
     todoService.add(newTask)
 
-    // TodoUiService.renderTasks(todoListUl, [newTask])
+    //TodoUiService.renderTasks(todoListUl, [newTask])
 }
 
 
