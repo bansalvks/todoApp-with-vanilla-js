@@ -8,6 +8,7 @@ const TodoUiService = {
 
             const doneCheckbox = document.createElement('input');
             doneCheckbox.setAttribute("type", "checkbox")
+            doneCheckbox.checked = task.isDone;
 
             const removeButton = document.createElement('button');
 

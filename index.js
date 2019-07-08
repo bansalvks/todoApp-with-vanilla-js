@@ -5,13 +5,14 @@ let todoListUl = null;
 const todoService = new TodoServices();
 
 const updateTaskHandler = function (id, text) {
-    todoService.update(id, text)
+    todoService.update(id, text, undefined)
 }
-const deleteTaskHandler = function (event) {
-
+const deleteTaskHandler = function (id) {
+    todoService.remove(id)
 }
-const doneTaskHandler = function (event) {
-
+const doneTaskHandler = function (id, isDone) {
+    console.log(isDone)
+    todoService.update(id, undefined, isDone)
 }
 
 const onTodoListDataChange = function () {
