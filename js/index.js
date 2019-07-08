@@ -39,6 +39,9 @@ const addTaskButtonClick = function (event) {
     const newTask = new TaskModel(text, false);
 
     todoService.add(newTask)
+    console.log(event)
+
+    newTaskInput.value = ''
 
     // TodoUiService.renderTasks(todoListUl, [newTask])
 }
@@ -49,7 +52,8 @@ function DOMContentLoadedCallback() {
     newTaskInput = document.getElementById('newTaskInput');
     todoListUl = document.getElementById('todoListUl');
 
-    addTaskButton.addEventListener('click', addTaskButtonClick)
+    addTaskButton.addEventListener('click', addTaskButtonClick);
+    onTodoListDataChange();
 }
 
 
