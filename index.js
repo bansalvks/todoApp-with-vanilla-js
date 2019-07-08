@@ -8,9 +8,29 @@ let addTaskButtonElement = null;
 let todoListUl = null;
 
 const todoService = new TodoServices();
-const onTodoListDataChange = function() {};
 
-todoService.addEventListener();
+const updateTaskHandler = function(id, text) {
+    console.log(event);
+    todoService.update(id, text);
+
+}
+
+const deleteTaskHandler = function(id) {
+    todoService.remove(id);
+}
+
+const doneTaskHandler = function(id, isDone) {
+    console.log(isDone);
+    todoService.update(id, undefined, isDone);
+}
+
+const onTodoListDataChange = function() {
+    const taskList = todoService.getAll();
+    // console.log(taskList);
+    TodoUiService.renderTasks(todoListUl, taskList, updateTaskHandler, deleteTaskHandler, doneTaskHandler);
+};
+
+todoService.addEventListener(onTodoListDataChange);
 
 const addTaskButtonClicked = function(event) {
     console.log('Add New Task Button Clicked');
@@ -19,7 +39,8 @@ const addTaskButtonClicked = function(event) {
     const newTask = new TaskModel(text, false);
 
     todoService.add(newTask);
-    // TodoUiService.renderTasks(todoListUl, [newTask]);
+
+    newTaskInput.value = '';
 };
 
 function DOMContentLoadedCallback(event) {
